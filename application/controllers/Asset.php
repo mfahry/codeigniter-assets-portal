@@ -325,8 +325,36 @@ class Asset extends CI_Controller {
 		}
 		else {
 			//$this->data["snmp"] = snmprealwalk($ip_address, "public", "1.3.6.1.2.1.1");
-			$this->data["snmp"] = snmprealwalk($ip_address, "public", "");
+			//$snmp_data = snmprealwalk($ip_address, "public", "");
+			//print_r($snmp_data);
+			
+			//get memory 
+			$this->data["memory"] = round(str_replace("INTEGER: ","",snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.2.0")[0]) / 1000000, 2);
+
+			//get host
+			$this->data["host"] = str_replace("STRING: ","",snmpwalk($ip_address, "public", ".1.3.6.1.2.1.1.1.0")[0]);
+			
+			//get storage
+			$temp_storage_allocation = snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.3.1.4");
+			$temp_storage_size = snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.3.1.5");
+			$storage = 0;
+			for($i = 0 ; $i < count($temp_storage_size); $i++) {
+				$size = str_replace("INTEGER: ", "", $temp_storage_size[$i]);
+				$allocation = str_replace("INTEGER: ", "", $temp_storage_allocation[$i]) /1000;
+				$storage += $size * $allocation;
+			}
+			$this->data["storage"] = round($storage / 1000000, 2);
+
+			$device = snmprealwalk($ip_address, "public", ".1.3.6.1.2.1.25.3.2.1.3");
+			$specification = "";
+			foreach($device as $row) {
+				$specification .=str_replace("STRING: ", "", str_replace("\"", "",$row))."\n";
+			}
+			$this->data["specification"] = $specification;
+			//print_r($this->data);
+
 			$this->load->view("snmp_detail", $this->data);
+
 		}
 	}
 }
