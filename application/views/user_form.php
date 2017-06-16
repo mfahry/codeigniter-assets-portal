@@ -16,14 +16,14 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-	      <form 
-	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data" 
+	      <form
+	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
 	      	id="form" action="<?php echo base_url("user/add"); ?>" novalidate>
-	        
+
           <!-- elements in form tag -->
 	        <p>Mohon masukkan data-data sesuai dengan yang seharusnya. Terima Kasih</p>
 	        <?php
-	        if(isset($info)){ 
+	        if(isset($info)){
         	?>
         		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
 	        <?php
@@ -34,8 +34,8 @@
               Username <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input 
-                type="text" class="form-control col-md-7 col-xs-12" 
+              <input
+                type="text" class="form-control col-md-7 col-xs-12"
                 placeholder="Username" required="required" name="username" id="username"/>
             </div>
           </div>
@@ -57,8 +57,8 @@
               Password <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input 
-                type="password" class="form-control col-md-7 col-xs-12" 
+              <input
+                type="password" class="form-control col-md-7 col-xs-12"
                 placeholder="Password" required="required" name="password" id="password"/>
             </div>
           </div>
@@ -69,10 +69,10 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="radio">
                 <label>
-                  <input type="radio" class="flat" name="active" value="Y"> Ya 
+                  <input type="radio" class="flat" name="active" value="Y"> Ya
                 </label>
                 <label>
-                  <input type="radio" class="flat" name="active" value="N"> Tidak 
+                  <input type="radio" class="flat" name="active" value="N"> Tidak
                 </label>
               </div>
             </div>

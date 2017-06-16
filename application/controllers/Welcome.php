@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('page_404');
 	}
-	
+
 	public function internal_error()
 	{
 		$this->load->view('page_500');
@@ -54,7 +54,7 @@ class Welcome extends CI_Controller {
 			// send to server telegram
 			$data = array(
 				"text" => $text,
-				"chat_id" => 100230,
+				"chat_id" => "@scheduleAlertOMS",
 				"parse_mode" => "HTML"
 				);
 			$ch = curl_unit();
@@ -62,7 +62,7 @@ class Welcome extends CI_Controller {
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-			
+
 			$server_output = curl_exec($ch);
 			curl_close($ch);
 		}

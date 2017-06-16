@@ -9,6 +9,7 @@
 
     <title>Asset Management</title>
 
+		<link rel="icon" type="image/gif" href="<?php echo base_url("favicon.ico")?>">
     <!-- Bootstrap -->
     <link href="<?php echo base_url("vendors/bootstrap/dist/css/bootstrap.min.css") ?>" rel="stylesheet">
     <!-- Font Awesome -->
@@ -39,8 +40,8 @@
                 <input type="password" class="form-control" placeholder="Password" name="password" />
               </div>
               <div>
-              	<input 
-                  type="submit" class="btn btn-default" 
+              	<input
+                  type="submit" class="btn btn-default"
                   style="float: none; margin: 0 auto; font-size:12px;" name="signin" value="Log in" />
                 <label class="red">
                 <?php
@@ -48,7 +49,7 @@
                   echo $info;
                 }
                 ?>
-                </label>    
+                </label>
               </div>
               <div class="clearfix"></div>
               <div class="separator">
@@ -107,8 +108,3 @@
     </div>
   </body>
 </html>
-
-
-
-
-

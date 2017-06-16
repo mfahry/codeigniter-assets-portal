@@ -28,13 +28,13 @@
 		  </div>
 		  <div class="x_content">
 		  	<?php
-        if(isset($info)){ 
+        if(isset($info)){
       	?>
       		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
         <?php
         }
         ?>
-				<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+				<table id="datatable-buttons" class="table table-hover table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
 				      <th><i>Hostname</i></th>
@@ -42,6 +42,7 @@
 				      <th>Tanggal Kejadian</th>
 				      <th>Deskripsi</th>
 				      <th>Dokumen Pendukung</th>
+              <th>Aksi</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -53,7 +54,7 @@
 								<td><?php echo $row["IP_ADDRESS"] ?></td>
 								<td><?php echo $row["EVENT_DATE"] ?></td>
 								<td>
-									<?php 
+									<?php
 									if(strlen($row["DESCRIPTION"]) >= 50){
 										echo substr($row["DESCRIPTION"], 0, 50)." ...";
 									}
@@ -67,15 +68,18 @@
 										<span class="fa fa-download"></span>
 									</a>
 								</td>
+                <td>
+                  <a href="<?php echo base_url("maintenance/modify/".$row["ID"])?>" class="btn btn-primary btn-xs">Lihat Detail</a>
+                </td>
 							</tr>
-						<?php  		
+						<?php
 				  	}
 				  	?>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <!-- iCheck -->

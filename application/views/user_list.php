@@ -21,7 +21,7 @@
 		  </div>
 		  <div class="x_content">
 		  	<?php
-        if(isset($info)){ 
+        if(isset($info)){
       	?>
       		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
         <?php
@@ -43,7 +43,7 @@
 				  	$i = 1;
 				  	foreach($user as $row){
 						?>
-							<tr> 
+							<tr>
 								<td><?php echo $i++; ?></td>
 								<td><?php echo $row["USERNAME"]; ?></td>
 								<td><?php echo $row["USER_TYPE"]; ?></td>
@@ -53,12 +53,12 @@
 									<a href="<?php echo base_url("user/modify/".$row["ID"])?>" class="btn btn-primary btn-sm">Ubah</a>
 								</td>
 							</tr>
-						<?php  		
+						<?php
 				  	}
 				  	?>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>

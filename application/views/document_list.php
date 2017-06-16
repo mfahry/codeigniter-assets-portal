@@ -28,7 +28,7 @@
 		  </div>
 		  <div class="x_content">
 		  	<?php
-        if(isset($info)){ 
+        if(isset($info)){
       	?>
       		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
         <?php
@@ -40,6 +40,7 @@
 				      <th>Nama Dokumen</th>
 				      <th>Deskripsi</th>
 				      <th>Dokumen</th>
+              <th>Aksi</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -49,7 +50,7 @@
 							<tr style="cursor:pointer;" data-url="<?php echo base_url("document/modify/".$row["ID"])?>">
 								<td><?php echo $row["NAME"] ?></td>
 								<td>
-									<?php 
+									<?php
 									if(strlen($row["DESCRIPTION"]) >= 50){
 										echo substr($row["DESCRIPTION"], 0, 50)." ...";
 									}
@@ -63,15 +64,18 @@
 										<span class="fa fa-download"></span>
 									</a>
 								</td>
+                <td>
+                  <a href="<?php echo base_url("document/modify/".$row["ID"])?>" class="btn btn-primary btn-xs">Lihat Detail</a>
+                </td>
 							</tr>
-						<?php  		
+						<?php
 				  	}
 				  	?>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <!-- iCheck -->

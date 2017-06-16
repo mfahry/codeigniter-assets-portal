@@ -9,9 +9,10 @@
 
     <title>Asset Management</title>
 
+    <link rel="icon" type="image/gif" href="<?php echo base_url("favicon.ico")?>">
     <!-- Bootstrap -->
     <link href="<?php echo base_url("vendors/bootstrap/dist/css/bootstrap.min.css"); ?>" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link href="<?php echo base_url("vendors/font-awesome/css/font-awesome.min.css"); ?>" rel="stylesheet">
     <link href="<?php echo base_url("build/font/arima-madurai.css"); ?>" rel="stylesheet">
@@ -24,13 +25,13 @@
 
     <!-- jQuery -->
     <script src="<?php echo base_url("vendors/jquery/dist/jquery.min.js"); ?>"></script>
-    
+
     <!-- Bootstrap -->
     <script src="<?php echo base_url("vendors/bootstrap/dist/js/bootstrap.min.js"); ?>"></script>
-    
+
     <!-- FastClick -->
     <script src="<?php echo base_url("vendors/fastclick/lib/fastclick.js"); ?>"></script>
-    
+
     <!-- NProgress -->
     <script src="<?php echo base_url("vendors/nprogress/nprogress.js"); ?>"></script>
   </head>
@@ -62,7 +63,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <?php 
+              <?php
               if($session_user["user_type"] != "VENDOR") {
               ?>
                 <div class="menu_section">
@@ -88,9 +89,9 @@
               <div class="menu_section">
                 <h3>Manage</h3>
                 <ul class="nav side-menu">
-                  <?php 
+                  <?php
                   if($session_user["user_type"] != "VENDOR") {
-                  ?> 
+                  ?>
                     <li>
                     	<a><i class="fa fa-archive"></i> Asset <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
@@ -117,7 +118,7 @@
                     </ul>
                   </li>
 
-                  <?php 
+                  <?php
                   if($session_user["user_type"] != "VENDOR") {
                   ?>
                     <li>
@@ -141,9 +142,9 @@
                         <li><a href="<?php echo base_url("document/add")?>">Add New</a></li>
                       </ul>
                     </li>
-                  <?php 
+                  <?php
                   }
-                   
+
                   if($session_user["user_type"] == "SYS") {
                   ?>
                     <li>
@@ -213,7 +214,7 @@
         <!-- /footer content -->
       </div>
     </div>
-    
+
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url("build/js/custom.js"); ?>"></script>
   </body>

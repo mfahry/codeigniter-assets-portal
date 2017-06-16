@@ -11,18 +11,18 @@ class Asset extends CI_Controller {
 			redirect("user/login");
 		}
 		if(
-			$this->session->userdata("user")["user_type"] != "SYS" && 
+			$this->session->userdata("user")["user_type"] != "SYS" &&
 			$this->session->userdata("user")["user_type"] != "ORGANIC") {
 			redirect("maintenance");
 		}
-		$this->template_data["session_user"] = $this->session->userdata("user"); 
+		$this->template_data["session_user"] = $this->session->userdata("user");
 
 		$this->data = array();
 		if($this->session->userdata("info") != "") {
 			$this->data["info"] = $this->session->userdata("info");
 			$this->session->set_userdata("info","");
 		}
-		
+
 	}
 
 	public function index() {
@@ -30,17 +30,17 @@ class Asset extends CI_Controller {
 			$this->data["asset"] = $this->asset_model->select_all();
 
 			$this->template_data["content"] = $this->load->view("asset_list", $this->data, TRUE);
-			$this->load->view("template", $this->template_data); 
+			$this->load->view("template", $this->template_data);
 	}
 
 	public function add() {
 
-		//	add form has been executed 
+		//	add form has been executed
 		if($this->input->post()) {
 			$this->load->model("asset_model");
 
 			// insert new asset
-			$hostname = $this->input->post("hostname"); 
+			$hostname = $this->input->post("hostname");
 			$brand = $this->input->post("brand");
 			$type = $this->input->post("type");
 			$ip_address = $this->input->post("ip_address");
@@ -70,16 +70,16 @@ class Asset extends CI_Controller {
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			//	upload photo
 			if($_FILES["photo"]["name"] != ""){
       	if($this->upload->do_upload("photo")){
       		$file = $this->upload->data();
-      		$photo = $config['upload_path'].$file["file_name"];	
+      		$photo = $config['upload_path'].$file["file_name"];
       	}
       	else{
       		$info = array(
-    				"text" => $this->upload->display_errors(), 
+    				"text" => $this->upload->display_errors(),
     				"class" => "alert-danger");
       		$this->session->set_userdata("info", $info);
       		redirect("asset/add");
@@ -88,7 +88,7 @@ class Asset extends CI_Controller {
 			$asset_id = $this->asset_model->insert(
 				$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number, $group_id, $active, $photo,
 				$buy_price, $buy_date, $expired_maintenance_date, $end_of_sale_date, $end_of_life_date, $cable_type,
-				$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $user_id, $port_asset, 
+				$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $user_id, $port_asset,
 				$end_of_support_date );
 
 			// insert asset port opened
@@ -112,7 +112,7 @@ class Asset extends CI_Controller {
 					$tmp_name = $name[$i];
 					$tmp_description = $description[$i];
 					$path = "";
-					
+
 					if($_FILES["document_file"]["name"][$i] != ""){
 						$_FILES["document"]["name"] = $_FILES["document_file"]["name"][$i];
 						$_FILES["document"]["type"] = $_FILES["document_file"]["type"][$i];
@@ -126,10 +126,10 @@ class Asset extends CI_Controller {
 						}
 						else{
 							$info = array(
-		    				"text" => $this->upload->display_errors(), 
+		    				"text" => $this->upload->display_errors(),
 		    				"class" => "alert-danger");
 		      		$this->session->set_userdata("info", $info);
-      				redirect("asset/add");	
+      				redirect("asset/add");
 						}
 					}
 
@@ -138,7 +138,7 @@ class Asset extends CI_Controller {
 				}
 			}
 			$info = array(
-				"text" => "data berhasil diinputkan ke sistem", 
+				"text" => "data berhasil diinputkan ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 		}
@@ -166,7 +166,7 @@ class Asset extends CI_Controller {
 		$this->data["procurement"] = $this->procurement_model->select_by_asset_id($id);
 
 		$this->template_data["content"] = $this->load->view("asset_detail", $this->data, TRUE);
-		$this->load->view("template", $this->template_data); 
+		$this->load->view("template", $this->template_data);
 	}
 
 	public function modify($id){
@@ -174,8 +174,8 @@ class Asset extends CI_Controller {
 		$this->load->model("asset_group_model");
 
 		if($this->input->post()){
-			// update asset			
-			$hostname = $this->input->post("hostname"); 
+			// update asset
+			$hostname = $this->input->post("hostname");
 			$brand = $this->input->post("brand");
 			$type = $this->input->post("type");
 			$ip_address = $this->input->post("ip_address");
@@ -196,7 +196,7 @@ class Asset extends CI_Controller {
 			$asset_function = $this->input->post("asset_function");
 			$specification = $this->input->post("specification");
 			$port_asset = $this->input->post("port_asset");
-			$end_of_support_date = $this->input->post("end_of_support_date");  
+			$end_of_support_date = $this->input->post("end_of_support_date");
 			$last_update_user_id = $this->session->userdata("user")["id"];
 			$photo = $this->input->post("photo_old");
 
@@ -205,7 +205,7 @@ class Asset extends CI_Controller {
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			//	upload photo
 			if($_FILES["photo"]["name"] != ""){
 		      	if($this->upload->do_upload("photo")){
@@ -213,24 +213,24 @@ class Asset extends CI_Controller {
 		      		if($photo != ""){
 		      			unlink("./".$photo);
 		      		}
-		      			
+
 		      		//	upload new photo
 		      		$file = $this->upload->data();
-		      		$photo = $config['upload_path'].$file["file_name"];	
+		      		$photo = $config['upload_path'].$file["file_name"];
 		      	}
 		      	else{
 		      		$info = array(
-		    				"text" => $this->upload->display_errors(), 
+		    				"text" => $this->upload->display_errors(),
 		    				"class" => "alert-danger");
 		      		$this->session->set_userdata("info", $info);
 		      		redirect("asset/modify/".$id);
 		      	}
 			}
-			
+
 			$this->asset_model->update(
 				$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number, $group_id, $active, $photo,
 				$buy_price, $buy_date, $expired_maintenance_date, $end_of_sale_date, $end_of_life_date, $cable_type,
-				$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $last_update_user_id, 
+				$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $last_update_user_id,
 				$port_asset, $end_of_support_date, $id );
 
 			// update asset port opened
@@ -256,7 +256,7 @@ class Asset extends CI_Controller {
 					$tmp_name = $name[$i];
 					$tmp_description = $description[$i];
 					$path = isset($this->input->post("path_old")[$i]) ? $this->input->post("path_old")[$i] : "";
-					
+
 					if($_FILES["document_file"]["name"][$i] != ""){
 						$_FILES["document"]["name"] = $_FILES["document_file"]["name"][$i];
 						$_FILES["document"]["type"] = $_FILES["document_file"]["type"][$i];
@@ -274,10 +274,10 @@ class Asset extends CI_Controller {
 						}
 						else{
 							$info = array(
-		    				"text" => $this->upload->display_errors(), 
+		    				"text" => $this->upload->display_errors(),
 		    				"class" => "alert-danger");
 		      		$this->session->set_userdata("info", $info);
-      				redirect("asset/modify/".$id);	
+      				redirect("asset/modify/".$id);
 						}
 					}
 
@@ -286,7 +286,7 @@ class Asset extends CI_Controller {
 				}
 			}
 			$info = array(
-				"text" => "data berhasil diupdate ke sistem", 
+				"text" => "data berhasil diupdate ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 		}
@@ -295,7 +295,7 @@ class Asset extends CI_Controller {
 		$this->data["asset"] = $this->asset_model->select_by_id($id);
 		$this->data["port"] = $this->asset_model->select_port_by_asset_id($id);
 		$this->data["document"] = $this->asset_model->select_document_by_asset_id($id);
-		
+
 		$this->template_data["content"] = $this->load->view("asset_form_modify", $this->data, TRUE);
 		$this->load->view("template", $this->template_data);
 	}
@@ -304,22 +304,21 @@ class Asset extends CI_Controller {
 		$this->load->model("asset_model");
 		$this->asset_model->delete($id);
 		$info = array(
-			"text" => "data berhasil dihapus dari sistem", 
+			"text" => "data berhasil dihapus dari sistem",
 			"class" => "alert-danger");
 		$this->session->set_userdata("info", $info);
-		redirect("asset");	
+		redirect("asset");
 	}
 
-	
+
 	public function get_snmp_data() {
-		//ini_set("display_errors", "off");
-		
-		/*$ip_address = $this->input->post("ip_address");
-		$split_ip_address = explode(".", $ip_address);
+		ini_set("display_errors", "off");
+
+		$ip_address = $this->input->post("ip_address");
+		/*$split_ip_address = explode(".", $ip_address);
 		$ip_address = intval($split_ip_address[0]).".".intval($split_ip_address[1]).".".intval($split_ip_address[2]).".".intval($split_ip_address[3]);
 		*/
 
-		$ip_address = "127.0.0.1";
 		if (! snmprealwalk($ip_address, "public", "")){
 			echo "not found data";
 		}
@@ -327,13 +326,13 @@ class Asset extends CI_Controller {
 			//$this->data["snmp"] = snmprealwalk($ip_address, "public", "1.3.6.1.2.1.1");
 			//$snmp_data = snmprealwalk($ip_address, "public", "");
 			//print_r($snmp_data);
-			
-			//get memory 
+
+			//get memory
 			$this->data["memory"] = round(str_replace("INTEGER: ","",snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.2.0")[0]) / 1000000, 2);
 
 			//get host
 			$this->data["host"] = str_replace("STRING: ","",snmpwalk($ip_address, "public", ".1.3.6.1.2.1.1.1.0")[0]);
-			
+
 			//get storage
 			$temp_storage_allocation = snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.3.1.4");
 			$temp_storage_size = snmpwalk($ip_address, "public", ".1.3.6.1.2.1.25.2.3.1.5");
@@ -351,7 +350,6 @@ class Asset extends CI_Controller {
 				$specification .=str_replace("STRING: ", "", str_replace("\"", "",$row))."\n";
 			}
 			$this->data["specification"] = $specification;
-			//print_r($this->data);
 
 			$this->load->view("snmp_detail", $this->data);
 

@@ -16,14 +16,14 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-	      <form 
-	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data" 
+	      <form
+	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
 	      	id="form" action="<?php echo base_url("user/modify/".$user["ID"]); ?>" novalidate>
 	        <input type="hidden" name="password" value="<?php echo $user["PASSWORD"]; ?>" />
           <!-- elements in form tag -->
 	        <p>Mohon masukkan data-data sesuai dengan yang seharusnya. Terima Kasih</p>
 	        <?php
-	        if(isset($info)){ 
+	        if(isset($info)){
         	?>
         		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
 	        <?php
@@ -34,7 +34,7 @@
               Username <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input 
+              <input
                 type="text" class="form-control col-md-7 col-xs-12" value="<?php echo $user["USERNAME"]; ?>"
                 placeholder="Username" required="required" name="username" id="username"/>
             </div>
@@ -57,8 +57,8 @@
               New Password <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input 
-                type="password" class="form-control col-md-7 col-xs-12" 
+              <input
+                type="password" class="form-control col-md-7 col-xs-12"
                 placeholder="New Password" name="new_password" id="new_password"/>
             </div>
           </div>
@@ -69,14 +69,14 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="radio">
                 <label>
-                  <input 
-                    type="radio" class="flat" name="active" value="Y" 
-                    <?php echo $user["ACTIVE"] == "Y" ? "checked":""; ?>> Ya 
+                  <input
+                    type="radio" class="flat" name="active" value="Y"
+                    <?php echo $user["ACTIVE"] == "Y" ? "checked":""; ?>> Ya
                 </label>
                 <label>
-                  <input 
+                  <input
                     type="radio" class="flat" name="active" value="N"
-                    <?php echo $user["ACTIVE"] == "N" ? "checked":""; ?>> Tidak 
+                    <?php echo $user["ACTIVE"] == "N" ? "checked":""; ?>> Tidak
                 </label>
               </div>
             </div>

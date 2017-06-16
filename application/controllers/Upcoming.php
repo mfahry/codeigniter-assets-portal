@@ -11,26 +11,26 @@ class Upcoming extends CI_Controller {
 			redirect("user/login");
 		}
 		if(
-			$this->session->userdata("user")["user_type"] != "SYS" && 
+			$this->session->userdata("user")["user_type"] != "SYS" &&
 			$this->session->userdata("user")["user_type"] != "ORGANIC") {
 			redirect("maintenance");
 		}
-		
+
 		$this->template_data["session_user"] = $this->session->userdata("user");
-		
+
 		$this->data = array();
 		if($this->session->userdata("info") != "") {
 			$this->data["info"] = $this->session->userdata("info");
 			$this->session->set_userdata("info","");
 		}
-		
+
 	}
 
 	public function index() {
 			$this->load->model("upcoming_model");
 			$this->data["upcoming"] = $this->upcoming_model->select_all();
 			$this->template_data["content"] = $this->load->view("upcoming_list", $this->data, TRUE);
-			$this->load->view("template", $this->template_data); 
+			$this->load->view("template", $this->template_data);
 	}
 
 	public function add(){
@@ -46,7 +46,7 @@ class Upcoming extends CI_Controller {
 			$this->upcoming_model->insert($asset_id, $reminder_date, $description, $status, $user_id);
 
 			$info = array(
-				"text" => "data berhasil diinputkan ke sistem", 
+				"text" => "data berhasil diinputkan ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
@@ -58,7 +58,7 @@ class Upcoming extends CI_Controller {
   		else if($this->input->post("activity") == "TROUBLESHOOT"){
   			$info["text"] .= ". Silahkan Masukkan Data Troubleshoot sesuai yang dilakukan";
   			$this->session->set_userdata("info",$info);
-  			redirect("troubleshoot/add/".$asset_id);	
+  			redirect("troubleshoot/add/".$asset_id);
   		}
 		}
 		$this->load->model("asset_model");
@@ -76,13 +76,13 @@ class Upcoming extends CI_Controller {
 			$reminder_date = $this->input->post("reminder_date");
 			$description = $this->input->post("description");
 			$status = $this->input->post("status");
-			
+
 			//	insert to asset upcoming table
-			
+
 			$this->upcoming_model->update($asset_id, $reminder_date, $description, $status, $id);
 
 			$info = array(
-				"text" => "data berhasil diupdate ke sistem", 
+				"text" => "data berhasil diupdate ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
@@ -94,12 +94,13 @@ class Upcoming extends CI_Controller {
   		else if($this->input->post("activity") == "TROUBLESHOOT"){
   			$info["text"] .= ". Silahkan Masukkan Data Troubleshoot sesuai yang dilakukan";
   			$this->session->set_userdata("info",$info);
-  			redirect("troubleshoot/add/".$asset_id);	
+  			redirect("troubleshoot/add/".$asset_id);
   		}
 
 		}
 		$this->data["upcoming"] = $this->upcoming_model->select_by_id($id);
 		$this->data["asset"] = $this->asset_model->select_all();
+		$this->data["asset_selected"] = $this->asset_model->select_by_id($this->data["upcoming"]["ASSET_ID"]);
 		$this->template_data["content"] = $this->load->view("upcoming_form_modify", $this->data, TRUE);
 		$this->load->view("template", $this->template_data);
 	}
@@ -108,12 +109,9 @@ class Upcoming extends CI_Controller {
 		$this->load->model("upcoming_model");
 		$this->upcoming_model->delete($id);
 		$info = array(
-			"text" => "data berhasil dihapus dari sistem", 
+			"text" => "data berhasil dihapus dari sistem",
 			"class" => "alert-danger");
 		$this->session->set_userdata("info", $info);
-		redirect("upcoming");	
+		redirect("upcoming");
 	}
 }
-
-
-

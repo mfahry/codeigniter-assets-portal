@@ -11,25 +11,25 @@ class Troubleshoot extends CI_Controller {
 			redirect("user/login");
 		}
 		if(
-			$this->session->userdata("user")["user_type"] != "SYS" && 
+			$this->session->userdata("user")["user_type"] != "SYS" &&
 			$this->session->userdata("user")["user_type"] != "ORGANIC") {
 			redirect("maintenance");
 		}
 		$this->template_data["session_user"] = $this->session->userdata("user");
-		
+
 		$this->data = array();
 		if($this->session->userdata("info") != "") {
 			$this->data["info"] = $this->session->userdata("info");
 			$this->session->set_userdata("info","");
 		}
-		
+
 	}
 
 	public function index() {
 			$this->load->model("troubleshoot_model");
 			$this->data["troubleshoot"] = $this->troubleshoot_model->select_all();
 			$this->template_data["content"] = $this->load->view("troubleshoot_list", $this->data, TRUE);
-			$this->load->view("template", $this->template_data); 
+			$this->load->view("template", $this->template_data);
 	}
 
 	public function add($param = 0){
@@ -43,22 +43,22 @@ class Troubleshoot extends CI_Controller {
 			$user_id = $this->session->userdata("user")["id"];
 			$user_id_solved = $this->input->post("user_id_solved");
 			$document_path = "";
-			
+
 			//configuration upload
 			$config["upload_path"] = "uploads/troubleshoot/";
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			// upload document if exist
 			if($_FILES["document"]["name"] != ""){
 				if($this->upload->do_upload("document")){
       		$file = $this->upload->data();
-      		$document_path = $config['upload_path'].$file["file_name"];	
+      		$document_path = $config['upload_path'].$file["file_name"];
       	}
       	else{
       		$info = array(
-    				"text" => $this->upload->display_errors(), 
+    				"text" => $this->upload->display_errors(),
     				"class" => "alert-danger");
       		$this->session->set_userdata("info", $info);
       		redirect("troubleshoot/add");
@@ -72,7 +72,7 @@ class Troubleshoot extends CI_Controller {
 				$user_id, $user_id_solved, $document_path);
 
 			$info = array(
-				"text" => "data berhasil diinputkan ke sistem", 
+				"text" => "data berhasil diinputkan ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
@@ -80,7 +80,7 @@ class Troubleshoot extends CI_Controller {
 		if($param != 0) {
 			$this->data["asset_id"] = $param;
 		}
-		
+
 		$this->load->model("asset_model");
 		$this->load->model("user_model");
 		$this->data["asset"] = $this->asset_model->select_all();
@@ -103,13 +103,13 @@ class Troubleshoot extends CI_Controller {
 			$solved = $solved_date != "" ? "Y": "N";
 			$user_id_solved = $this->input->post("user_id_solved");
 			$document_path = $this->input->post("document_path_old");
-			
+
 			//configuration upload
 			$config["upload_path"] = "uploads/troubleshoot/";
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			// upload document if exist
 			if($_FILES["document"]["name"] != ""){
 				if($this->upload->do_upload("document")){
@@ -120,11 +120,11 @@ class Troubleshoot extends CI_Controller {
 
 					// upload new document
       		$file = $this->upload->data();
-      		$document_path = $config['upload_path'].$file["file_name"];	
+      		$document_path = $config['upload_path'].$file["file_name"];
       	}
       	else{
       		$info = array(
-    				"text" => $this->upload->display_errors(), 
+    				"text" => $this->upload->display_errors(),
     				"class" => "alert-danger");
       		$this->session->set_userdata("info", $info);
       		redirect("troubleshoot/modify/".$id);
@@ -137,29 +137,27 @@ class Troubleshoot extends CI_Controller {
 				$user_id_solved, $document_path, $id);
 
 			$info = array(
-				"text" => "data berhasil diupdate ke sistem", 
+				"text" => "data berhasil diupdate ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
 		}
-		
+
 		$this->data["asset"] = $this->asset_model->select_all();
 		$this->data["troubleshoot"] = $this->troubleshoot_model->select_by_id($id);
+		$this->data["asset_selected"] = $this->asset_model->select_by_id($this->data["troubleshoot"]["ASSET_ID"]);
 		$this->data["user"] = $this->user_model->select_all();
 		$this->template_data["content"] = $this->load->view("troubleshoot_form_modify", $this->data, TRUE);
-		$this->load->view("template", $this->template_data);	
+		$this->load->view("template", $this->template_data);
 	}
 
 	public function drop($id){
 		$this->load->model("troubleshoot_model");
 		$this->troubleshoot_model->delete($id);
 		$info = array(
-			"text" => "data berhasil dihapus dari sistem", 
+			"text" => "data berhasil dihapus dari sistem",
 			"class" => "alert-danger");
 		$this->session->set_userdata("info", $info);
-		redirect("troubleshoot");	
+		redirect("troubleshoot");
 	}
 }
-
-
-

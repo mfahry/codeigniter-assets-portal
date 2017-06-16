@@ -28,13 +28,13 @@
 		  </div>
 		  <div class="x_content">
 		  	<?php
-        if(isset($info)){ 
+        if(isset($info)){
       	?>
       		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
         <?php
         }
         ?>
-				<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+				<table id="datatable-buttons" class="table table-hover table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				  <thead>
 				    <tr>
 				      <th><i>Hostname</i></th>
@@ -42,20 +42,21 @@
 				      <th>Tanggal Pengingat</th>
 				      <th>Deskripsi</th>
 				      <th>Status</th>
+              <th>Aksi</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 				  	<?php
 				  	foreach($upcoming as $row){
 						?>
-							<tr 
+							<tr
 								class="<?php echo $row["STATUS"]=="PENDING" ? "bg-red":""; ?>"
 								style="cursor:pointer;" data-url="<?php echo base_url("upcoming/modify/".$row["ID"])?>">
 								<td><?php echo $row["HOSTNAME"] ?></td>
 								<td><?php echo $row["IP_ADDRESS"] ?></td>
 								<td><?php echo $row["REMINDER_DATE"] ?></td>
 								<td>
-									<?php 
+									<?php
 									if(strlen($row["DESCRIPTION"]) >= 50){
 										echo substr($row["DESCRIPTION"], 0, 50)." ...";
 									}
@@ -65,15 +66,18 @@
 									?>
 								</td>
 								<td class="text-center"><?php echo $row["STATUS"] ?></td>
+                <td>
+                  <a href="<?php echo base_url("upcoming/modify/".$row["ID"])?>" class="btn btn-primary btn-xs">Lihat Detail</a>
+                </td>
 							</tr>
-						<?php  		
+						<?php
 				  	}
 				  	?>
 				  </tbody>
 				</table>
 			</div>
 		</div>
-	</div>	
+	</div>
 </div>
 
 <!-- iCheck -->

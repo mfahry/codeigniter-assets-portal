@@ -1,8 +1,8 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
-	
+
 	public function select_by_username_password($username, $password) {
 		$sql = "SELECT ID, USERNAME, USER_TYPE, ACTIVE FROM USER WHERE USERNAME = ? AND PASSWORD = MD5(?)";
 		$result = $this->db->query($sql, array($username, $password));

@@ -24,21 +24,21 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-	      <form 
-	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data" 
+	      <form
+	      	class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
 	      	id="form" action="<?php echo base_url("asset/modify/".$asset["ID"]); ?>" novalidate>
-	        
+
 	        <!-- Smart Wizard -->
 	        <p>Mohon masukkan data-data sesuai dengan yang seharusnya. Terima Kasih</p>
 	        <?php
-	        if(isset($info)){ 
+	        if(isset($info)){
         	?>
         		<div class="alert <?php echo $info["class"]; ?>"><?php echo $info["text"]; ?></div>
 	        <?php
 	        }
 	        ?>
 	        <div id="wizard" class="form_wizard wizard_horizontal">
-	          
+
 	          <!-- Wizard Steps Header -->
 	          <ul class="wizard_steps">
 	            <li>
@@ -79,7 +79,7 @@
 	            </li>
 	          </ul>
 	          <!-- Wizard Steps Header -->
-	          
+
 	          <!-- SmartWizard Content -->
 	          <div id="step-1">
               <div class="item form-group">
@@ -87,7 +87,7 @@
                 	<i>Hostname</i> <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="hostname" name="hostname" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["HOSTNAME"]; ?>">
+                  <input type="text" id="hostname" name="hostname" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["HOSTNAME"]; ?>">
                 </div>
               </div>
               <div class="item form-group">
@@ -95,7 +95,7 @@
                 	<i>Brand</i> <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="brand" name="brand" required="required" class="form-control col-md-7 col-xs-12"  value="<?php echo $asset["BRAND"]; ?>">
+                  <input type="text" id="brand" name="brand" class="form-control col-md-7 col-xs-12"  value="<?php echo $asset["BRAND"]; ?>">
                 </div>
               </div>
               <div class="item form-group">
@@ -103,7 +103,7 @@
                 	Tipe <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="type" name="type" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["TYPE"]; ?>">
+                  <input type="text" id="type" name="type" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["TYPE"]; ?>">
                 </div>
               </div>
               <div class="item form-group">
@@ -111,8 +111,8 @@
                 	<i>IP Address Management</i> <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" id="ip_address" name="ip_address" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '999.999.999.999'" value="<?php echo $asset["IP_ADDRESS"]; ?>"
+                  <input
+                  	type="text" id="ip_address" name="ip_address" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["IP_ADDRESS"]; ?>"
                 	/>
                 	<span class="fa fa-wifi form-control-feedback right" aria-hidden="true"></span>
                   <button style="margin-top: 5px; " type="button" class="btn btn-default btn-sm" id="btn_snmp">Check SNMP !!</button>
@@ -123,8 +123,8 @@
                   <i>Port Management</i> <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                    type="text" id="port_asset" name="port_asset" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["PORT"]; ?>"
+                  <input
+                    type="text" id="port_asset" name="port_asset" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["PORT"]; ?>"
                   />
                   <span class="fa fa-plug form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -142,7 +142,7 @@
                 	Sistem Operasi <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="operating_system" name="operating_system" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["OPERATING_SYSTEM"]; ?>">
+                  <input type="text" id="operating_system" name="operating_system" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["OPERATING_SYSTEM"]; ?>">
                 </div>
               </div>
               <div class="item form-group">
@@ -150,8 +150,8 @@
                 	<i>Serial Number</i> <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" id="serial_number" name="serial_number" required="required" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '****-****-****-****-****-***'" value="<?php echo $asset["SERIAL_NUMBER"]; ?>"
+                  <input
+                  	type="text" id="serial_number" name="serial_number" class="form-control col-md-7 col-xs-12" data-inputmask="'mask' : '****-****-****-****-****-***'" value="<?php echo $asset["SERIAL_NUMBER"]; ?>"
                 	/>
                 	<span class="fa fa-key form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -168,7 +168,7 @@
                   	?>
                   		<option value="<?php echo $row["ID"]; ?>" <?php echo $row["ID"]==$asset["GROUP_ID"]? "selected": ""?>>
                         <?php echo $row["NAME"]; ?>
-                      </option>	
+                      </option>
                   	<?php
                   	}
                   	?>
@@ -207,7 +207,7 @@
                 	Harga Beli <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="buy_price" name="buy_price" class="form-control col-md-7 col-xs-12" required="required" value="<?php echo $asset["BUY_PRICE"]; ?>"/>
+                  <input type="text" id="buy_price" name="buy_price" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["BUY_PRICE"]; ?>"/>
                 	<span class="fa fa-money form-control-feedback right" aria-hidden="true"></span>
                 </div>
               </div>
@@ -216,8 +216,8 @@
                 	Tanggal Beli
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" class="form-control col-md-4 col-xs-8" 
+                  <input
+                  	type="text" class="form-control col-md-4 col-xs-8"
                   	id="buy_date" name="buy_date" placeholder="Buy Date" value="<?php echo $asset["BUY_DATE"]; ?>"/>
                   <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -227,8 +227,8 @@
                 	Tanggal <i>Maintenance</i> Berakhir
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" class="form-control col-md-4 col-xs-8" 
+                  <input
+                  	type="text" class="form-control col-md-4 col-xs-8"
                   	id="expired_maintenance_date" name="expired_maintenance_date" placeholder="Expired Maintenance Date" value="<?php echo $asset["EXPIRED_MAINTENANCE_DATE"]; ?>"/>
                   <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -238,8 +238,8 @@
                   <i>End of Support Date</i>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                    type="text" class="form-control col-md-4 col-xs-8" 
+                  <input
+                    type="text" class="form-control col-md-4 col-xs-8"
                     id="end_of_support_date" name="end_of_support_date" placeholder="End of Support Date" value="<?php echo $asset["END_OF_SUPPORT_DATE"]; ?>"/>
                   <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -249,8 +249,8 @@
                 	<i>End of Sale Date</i>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" class="form-control col-md-4 col-xs-8" 
+                  <input
+                  	type="text" class="form-control col-md-4 col-xs-8"
                   	id="end_of_sale_date" name="end_of_sale_date" placeholder="EoS Date" value="<?php echo $asset["END_OF_SALE_DATE"]; ?>"/>
                   <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -260,8 +260,8 @@
                 	<i>End of Life Date</i>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input 
-                  	type="text" class="form-control col-md-4 col-xs-8" 
+                  <input
+                  	type="text" class="form-control col-md-4 col-xs-8"
                   	id="end_of_life_date" name="end_of_life_date" placeholder="EoL Date" value="<?php echo $asset["END_OF_LIFE_DATE"]; ?>"/>
                   <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                 </div>
@@ -273,7 +273,7 @@
                 	Tipe Kabel
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="cable_type" name="cable_type" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["CABLE_TYPE"]; ?>">
+                  <input type="text" id="cable_type" name="cable_type" class="form-control col-md-7 col-xs-12" value="<?php echo $asset["CABLE_TYPE"]; ?>">
                 </div>
               </div>
               <div class="item form-group">
@@ -283,17 +283,17 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                 	<div class="row">
 	                	<div class="col-md-3 col-sm-5 col-xs-5">
-	                		<input 
-	                			type="text" id="cable_x_coordinate" 
+	                		<input
+	                			type="text" id="cable_x_coordinate"
 	                			name="cable_x_coordinate" class="form-control col-xs-12" placeholder="X Value" value="<?php echo $asset["CABLE_X_COORDINATE"]; ?>"/>
                 		</div>
                 		<div class="col-md-1 col-sm-2 col-xs-2 text-center"><h5>,</h5></div>
 	                	<div class="col-md-3 col-sm-5 col-xs-5">
-	                		<input 
-	                			type="text" id="cable_y_coordinate" 
-	                			name="cable_y_coordinate" class="form-control col-xs-12" placeholder="Y Value" value="<?php echo $asset["CABLE_Y_COORDINATE"]; ?>" 
+	                		<input
+	                			type="text" id="cable_y_coordinate"
+	                			name="cable_y_coordinate" class="form-control col-xs-12" placeholder="Y Value" value="<?php echo $asset["CABLE_Y_COORDINATE"]; ?>"
                 			/>
-                		</div>	
+                		</div>
                 	</div>
                 </div>
               </div>
@@ -314,9 +314,9 @@
                 	Fungsi Aset
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                	<textarea 
-                		class="resizable_textarea form-control" placeholder="Function Description" 
-                		name="asset_function" id="asset_function" ><?php echo $asset["ASSET_FUNCTION"] ?></textarea>  
+                	<textarea
+                		class="resizable_textarea form-control" placeholder="Function Description"
+                		name="asset_function" id="asset_function" ><?php echo $asset["ASSET_FUNCTION"] ?></textarea>
                 </div>
               </div>
               <div class="item form-group">
@@ -324,16 +324,16 @@
                 	Spesifikasi
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                	<textarea 
+                	<textarea
                 		class="resizable_textarea form-control" placeholder="spesification Description"
-                		name="specification" id="specification"><?php echo $asset["SPECIFICATION"] ?></textarea>  
+                		name="specification" id="specification"><?php echo $asset["SPECIFICATION"] ?></textarea>
                 </div>
               </div>
 	          </div>
 	          <div id="step-3">
 	          	<div class="row">
 	          		<div class="
-	          			col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 
+	          			col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2
 	          			col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
 
           				<table id="table_port" class="table table-bordered">
@@ -345,7 +345,7 @@
 			          			</tr>
 			          		</thead>
 			          		<tbody>
-                      <?php 
+                      <?php
                       foreach($port as $row){
                       ?>
                         <tr>
@@ -359,9 +359,9 @@
                             <button type="button" onclick="table_remove_row(event)" class="btn btn-danger">Remove</button>
                           </td>
                         </tr>
-                      <?php  
+                      <?php
                       }
-                      ?>     
+                      ?>
                     </tbody>
 			          	</table>
           			</div>
@@ -375,7 +375,7 @@
 	          <div id="step-4">
 	          	<div class="row">
 	          		<div class="
-	          			col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 
+	          			col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1
 	          			col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
 
           				<table id="table_document" class="table table-bordered">
@@ -388,7 +388,7 @@
 			          			</tr>
 			          		</thead>
 			          		<tbody>
-                      <?php 
+                      <?php
                       foreach($document as $row){
                       ?>
                         <tr>
@@ -413,9 +413,9 @@
                             <button type="button" onclick="table_remove_row(event)" class="btn btn-danger">Remove</button>
                           </td>
                         </tr>
-                      <?php  
+                      <?php
                       }
-                      ?>     
+                      ?>
                     </tbody>
 			          	</table>
           			</div>
@@ -445,7 +445,7 @@
         <h4 class="modal-title" id="myModalLabel2">Pemberitahuan</h4>
       </div>
       <div class="modal-body">
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -467,4 +467,3 @@
 <script src="<?php echo base_url("vendors/bootstrap-daterangepicker/daterangepicker.js"); ?>"></script>
 <!-- jquery.inputmask -->
 <script src="<?php echo base_url("vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"); ?>"></script>
-

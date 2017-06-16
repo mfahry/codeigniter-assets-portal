@@ -17,7 +17,7 @@ class Maintenance extends CI_Controller {
 			$this->data["info"] = $this->session->userdata("info");
 			$this->session->set_userdata("info","");
 		}
-		
+
 	}
 
 	public function index() {
@@ -25,7 +25,7 @@ class Maintenance extends CI_Controller {
 			$this->data["maintenance"] = $this->maintenance_model->select_all();
 
 			$this->template_data["content"] = $this->load->view("maintenance_list", $this->data, TRUE);
-			$this->load->view("template", $this->template_data); 
+			$this->load->view("template", $this->template_data);
 	}
 
 	public function add($param = 0){
@@ -35,22 +35,22 @@ class Maintenance extends CI_Controller {
 			$description = $this->input->post("description");
 			$document_path = "";
 			$user_id = $this->session->userdata("user")["id"];
-			
+
 			//configuration upload
 			$config["upload_path"] = "uploads/maintenance/";
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			// upload document if exist
 			if($_FILES["document"]["name"] != ""){
 				if($this->upload->do_upload("document")){
       		$file = $this->upload->data();
-      		$document_path = $config['upload_path'].$file["file_name"];	
+      		$document_path = $config['upload_path'].$file["file_name"];
       	}
       	else{
       		$info = array(
-    				"text" => $this->upload->display_errors(), 
+    				"text" => $this->upload->display_errors(),
     				"class" => "alert-danger");
       		$this->session->set_userdata("info", $info);
       		redirect("maintenance/add");
@@ -62,7 +62,7 @@ class Maintenance extends CI_Controller {
 			$this->maintenance_model->insert($asset_id, $event_date, $description, $document_path, $user_id);
 
 			$info = array(
-				"text" => "data berhasil diinputkan ke sistem", 
+				"text" => "data berhasil diinputkan ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
@@ -86,13 +86,13 @@ class Maintenance extends CI_Controller {
 			$event_date = $this->input->post("event_date");
 			$description = $this->input->post("description");
 			$document_path = $this->input->post("document_path_old");
-			
+
 			//configuration upload
 			$config["upload_path"] = "uploads/maintenance/";
 			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
-			
+
 			// upload document if exist
 			if($_FILES["document"]["name"] != ""){
 				if($this->upload->do_upload("document")){
@@ -103,11 +103,11 @@ class Maintenance extends CI_Controller {
 
 					//	upload new document
       		$file = $this->upload->data();
-      		$document_path = $config['upload_path'].$file["file_name"];	
+      		$document_path = $config['upload_path'].$file["file_name"];
       	}
       	else{
       		$info = array(
-    				"text" => $this->upload->display_errors(), 
+    				"text" => $this->upload->display_errors(),
     				"class" => "alert-danger");
       		$this->session->set_userdata("info", $info);
       		redirect("maintenance/modify/".$id);
@@ -117,13 +117,14 @@ class Maintenance extends CI_Controller {
 			//	insert to asset maintenance table
 			$this->maintenance_model->update($asset_id, $event_date, $description, $document_path, $id);
 			$info = array(
-				"text" => "data berhasil diupdate ke sistem", 
+				"text" => "data berhasil diupdate ke sistem",
 				"class" => "alert-success");
   		$this->data["info"] = $info;
 
 		}
 		$this->data["maintenance"] = $this->maintenance_model->select_by_id($id);
 		$this->data["asset"] = $this->asset_model->select_all();
+		$this->data["asset_selected"] = $this->asset_model->select_by_id($this->data["maintenance"]["ASSET_ID"]);
 		$this->template_data["content"] = $this->load->view("maintenance_form_modify", $this->data, TRUE);
 		$this->load->view("template", $this->template_data);
 	}
@@ -132,12 +133,9 @@ class Maintenance extends CI_Controller {
 		$this->load->model("maintenance_model");
 		$this->maintenance_model->delete($id);
 		$info = array(
-			"text" => "data berhasil dihapus dari sistem", 
+			"text" => "data berhasil dihapus dari sistem",
 			"class" => "alert-danger");
 		$this->session->set_userdata("info", $info);
-		redirect("maintenance");	
+		redirect("maintenance");
 	}
 }
-
-
-
