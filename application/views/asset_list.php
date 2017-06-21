@@ -45,6 +45,7 @@
 				      <th>Lokasi</th>
 				      <th>Status</th>
 				      <th>Sistem Operasi</th>
+              <th>Serial Number</th>
               <th>Aksi</th>
 				    </tr>
 				  </thead>
@@ -63,6 +64,7 @@
 								<td><?php echo $row["LOCATION"] ?></td>
 								<td><?php echo $row["ACTIVE"] ?></td>
 								<td><?php echo $row["OPERATING_SYSTEM"] ?></td>
+                <td><?php echo $row["SERIAL_NUMBER"] ?></td>
                 <td>
                   <a href="<?php echo base_url("asset/detail/".$row["ID"])?>" class="btn btn-primary btn-xs">Lihat Detail</a>
                 </td>

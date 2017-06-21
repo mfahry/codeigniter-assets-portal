@@ -44,7 +44,7 @@ class Procurement extends CI_Controller {
 
 			//configuration upload
 			$config["upload_path"] = "uploads/procurement/";
-			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
+			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|keyjpeg|jpg|png";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
 
@@ -91,7 +91,7 @@ class Procurement extends CI_Controller {
 
 			//configuration upload
 			$config["upload_path"] = "uploads/procurement/";
-			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|key";
+			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|ppt|pptx|pages|numbers|keyjpeg|jpg|png";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
 

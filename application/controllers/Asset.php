@@ -67,7 +67,7 @@ class Asset extends CI_Controller {
 
 			//	configuration upload
 			$config["upload_path"] = "uploads/asset/";
-			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|key";
+			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|keyjpeg|jpg|png";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
 
@@ -202,7 +202,7 @@ class Asset extends CI_Controller {
 
 			//	configuration upload
 			$config["upload_path"] = "uploads/asset/";
-			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|key";
+			$config["allowed_types"] ="doc|docx|pdf|xls|xlsx|csv|ppt|pptx|pages|numbers|key|jpeg|jpg|png";
 			$this->load->library("upload", $config);
 			$this->upload->initialize($config);
 

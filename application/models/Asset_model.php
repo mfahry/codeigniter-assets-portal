@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Asset_model extends CI_Model {
 	public function select_all() {
 		$sql = "
-			SELECT 
-				A.ID, BRAND, TYPE, B.NAME AS 'GROUP', LOCATION, 
-				HOSTNAME, IP_ADDRESS, ACTIVE, OPERATING_SYSTEM 
+			SELECT
+				A.ID, BRAND, TYPE, B.NAME AS 'GROUP', LOCATION,
+				HOSTNAME, IP_ADDRESS, ACTIVE, OPERATING_SYSTEM, SERIAL_NUMBER 
 			FROM ASSET A
 			JOIN ASSET_GROUP B ON(A.GROUP_ID = B.ID)";
 		$result = $this->db->query($sql);
@@ -16,7 +16,7 @@ class Asset_model extends CI_Model {
 	public function insert(
 		$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number, $group_id, $active, $photo,
 		$buy_price, $buy_date, $expired_maintenance_date, $end_of_sale_date, $end_of_life_date, $cable_type,
-		$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $user_id, $port, 
+		$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $user_id, $port,
 		$end_of_support_date ) {
 
 		$sql = "
@@ -35,7 +35,7 @@ class Asset_model extends CI_Model {
 			$buy_price, $buy_date, $expired_maintenance_date, $end_of_sale_date, $end_of_life_date, $cable_type,
 			$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $user_id, $port,
 			$end_of_support_date
-		));	
+		));
 
 		return $this->db->insert_id();
 	}
@@ -43,25 +43,25 @@ class Asset_model extends CI_Model {
 	public function update(
 		$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number, $group_id, $active, $photo,
 		$buy_price, $buy_date, $expired_maintenance_date, $end_of_sale_date, $end_of_life_date, $cable_type,
-		$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $last_update_user_id, $port, 
+		$cable_x_coordinate, $cable_y_coordinate, $ha_mode, $asset_function, $specification, $last_update_user_id, $port,
 		$end_of_support_date, $id) {
 
 		$sql = "
-			UPDATE ASSET SET 
+			UPDATE ASSET SET
 				HOSTNAME = ?, BRAND = ?, TYPE = ?, IP_ADDRESS = ?, LOCATION = ?, OPERATING_SYSTEM = ?, SERIAL_NUMBER = ?,
-				GROUP_ID = ?, ACTIVE = ?, PHOTO = ?, BUY_PRICE = ?, BUY_DATE = ?, EXPIRED_MAINTENANCE_DATE = ?, 
+				GROUP_ID = ?, ACTIVE = ?, PHOTO = ?, BUY_PRICE = ?, BUY_DATE = ?, EXPIRED_MAINTENANCE_DATE = ?,
 				END_OF_SALE_DATE = ?, END_OF_LIFE_DATE = ?, CABLE_TYPE = ?, CABLE_X_COORDINATE = ?, CABLE_Y_COORDINATE = ?,
 				HA_MODE = ?, ASSET_FUNCTION = ?, SPECIFICATION = ?, LAST_UPDATE = NOW(), LAST_UPDATE_USER_ID = ?, PORT = ?,
 				END_OF_SUPPORT_DATE = ?
 			WHERE ID = ? ";
-		
+
 		$this->db->query($sql, array(
-			$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number, 
-			$group_id, $active, $photo, $buy_price, $buy_date, $expired_maintenance_date, 
-			$end_of_sale_date, $end_of_life_date, $cable_type, $cable_x_coordinate, $cable_y_coordinate, 
+			$hostname, $brand, $type, $ip_address, $location, $operating_system, $serial_number,
+			$group_id, $active, $photo, $buy_price, $buy_date, $expired_maintenance_date,
+			$end_of_sale_date, $end_of_life_date, $cable_type, $cable_x_coordinate, $cable_y_coordinate,
 			$ha_mode, $asset_function, $specification, $last_update_user_id, $port, $end_of_support_date,
 			$id
-		));	
+		));
 	}
 
 	public function delete($id){
@@ -86,12 +86,12 @@ class Asset_model extends CI_Model {
 
 	public function delete_document_by_asset_id($asset_id){
 		$sql = "DELETE FROM ASSET_DOCUMENT WHERE ASSET_ID = ?";
-		$this->db->query($sql, array($asset_id));	
+		$this->db->query($sql, array($asset_id));
 	}
 
 	public function select_by_id($id){
 		$sql = "
-			SELECT 
+			SELECT
 				A.ID, BRAND, TYPE, B.ID GROUP_ID, B.NAME GROUP_NAME, BUY_DATE, EXPIRED_MAINTENANCE_DATE, PHOTO, LOCATION,
 				BUY_PRICE, CABLE_X_COORDINATE, CABLE_Y_COORDINATE, CABLE_TYPE, SERIAL_NUMBER, HA_MODE, SPECIFICATION,
 				ASSET_FUNCTION, ACTIVE, HOSTNAME, END_OF_LIFE_DATE, END_OF_SALE_DATE, IP_ADDRESS, OPERATING_SYSTEM, PORT,

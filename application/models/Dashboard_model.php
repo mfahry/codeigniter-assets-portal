@@ -1,11 +1,11 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard_model extends CI_Model {
 	public function asset_availability_per_group(){
 		$sql = "
-			SELECT 
-				A.ID GROUP_ID, A.NAME GROUP_NAME, 
+			SELECT
+				A.ID GROUP_ID, A.NAME GROUP_NAME,
 				IFNULL(SUM(IF(ACTIVE = 'Y', 1, 0)),0) ACTIVE, IFNULL(SUM(IF(ACTIVE = 'N', 1, 0)),0) NON_ACTIVE
 			FROM ASSET_GROUP A
 			LEFT JOIN  ASSET B ON(A.ID = B.GROUP_ID)
@@ -22,35 +22,35 @@ class Dashboard_model extends CI_Model {
 
 	public function troubleshoot_total_per_month($date){
 		$sql = "
-			SELECT 
-				SOLVED STATUS, COUNT(ID) TOTAL 
-			FROM ASSET_TROUBLESHOOT 
+			SELECT
+				SOLVED STATUS, COUNT(ID) TOTAL
+			FROM ASSET_TROUBLESHOOT
 			WHERE DATE_FORMAT(EVENT_DATE, '%Y-%m') = ?
 			GROUP BY SOLVED";
 		$result = $this->db->query($sql, array($date));
-		return $result->result_array();		
+		return $result->result_array();
 	}
 
 	public function procurement_total_per_month($date){
 		$sql = "
-			SELECT 
-				STATUS, COUNT(ID) TOTAL 
-			FROM ASSET_PROCUREMENT_MAINTENANCE 
-			WHERE DATE_FORMAT(FILLING_DATE, '%Y-%m') = ? 
+			SELECT
+				STATUS, COUNT(ID) TOTAL
+			FROM ASSET_PROCUREMENT_MAINTENANCE
+			WHERE DATE_FORMAT(FILLING_DATE, '%Y-%m') = ?
 			GROUP BY STATUS";
 		$result = $this->db->query($sql, array($date));
-		return $result->result_array();		
+		return $result->result_array();
 	}
 
-	public function latest_five_login(){
-		$sql = "SELECT ID, USERNAME, LAST_LOGIN, USER_TYPE FROM USER ORDER BY LAST_LOGIN DESC LIMIT 5";
+	public function latest_four_login(){
+		$sql = "SELECT ID, USERNAME, LAST_LOGIN, USER_TYPE FROM USER ORDER BY LAST_LOGIN DESC LIMIT 4";
 		$result = $this->db->query($sql);
 		return $result->result_array();
-	}	
+	}
 
 	public function reminder_asset_critical_date($date){
 		$sql = "
-			SELECT 
+			SELECT
 				A.ID, B.NAME GROUP_NAME, BRAND, TYPE, IP_ADDRESS, LOCATION,
 				HOSTNAME, EXPIRED_MAINTENANCE_DATE, END_OF_SALE_DATE, END_OF_LIFE_DATE
 			FROM ASSET A
@@ -62,7 +62,7 @@ class Dashboard_model extends CI_Model {
 
 	public function reminder_upcoming_event($date){
 		$sql = "
-			SELECT 
+			SELECT
 				A.ID, C.NAME GROUP_NAME, BRAND, TYPE, IP_ADDRESS, LOCATION,
 				HOSTNAME, D.USERNAME, REMINDER_DATE, A.DESCRIPTION
 			FROM ASSET_UPCOMING_EVENT A
@@ -72,6 +72,6 @@ class Dashboard_model extends CI_Model {
 			WHERE DATE_FORMAT(REMINDER_DATE, '%Y-%m') = ? AND STATUS IN('WAITING REMINDER', 'PENDING')";
 		$result = $this->db->query($sql, array($date));
 		return $result->result_array();
-	}	
+	}
 }
 ?>

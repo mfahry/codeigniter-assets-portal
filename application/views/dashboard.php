@@ -58,59 +58,65 @@
     <div class="x_panel">
       <div class="x_title">
         <h2>Availability Aset <small>Periode <?php echo date("M")?></small></h2>
-        
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-        <div class="col-md-9 col-sm-12 col-xs-12">
-          <div class="demo-container" style="height:280px">
-            <!--<div id="chart_plot_02" class="demo-placeholder"></div>-->
-            <canvas id="asset_available_chart"></canvas>
-          </div>
+        <canvas id="asset_available_chart"></canvas>
         </div>
+    </div>
+  </div>
+</div>
 
-        <div class="col-md-3 col-sm-12 col-xs-12">
-          <div>
-            <div class="x_title">
-              <h2>Five Last Login User</h2>
-              <div class="clearfix"></div>
-            </div>
-            <ul class="list-unstyled top_profiles scroll-view">
-              <?php 
-              $i = 0;
-              foreach($user as $row) {
-                $color = "aero";
-                if( $i%3 == 0 ) {
-                  $color = "green";
-                }
-                if( $i%3 == 1 ) {
-                  $color = "blue";
-                } 
-              ?>
-                <li class="media event">
-                  <a class="pull-left border-aero profile_thumb">
-                    <i class="fa fa-user <?php echo $color; ?>"></i>
-                  </a>
-                  <div class="media-body">
-                    <a class="title" href="#"><?php echo ($i+1).". ".$row["USERNAME"]; ?></a>
-                    <p>Last Login : <?php echo $row["LAST_LOGIN"]; ?></p>
-                    <p><small>tipe user : <?php echo $row["USER_TYPE"]?></small></p>
-                  </div>
-                </li>
-              <?php
-                $i++;
-              }
-              ?>
-            </ul>
-          </div>
-        </div>
+<div class="row">
+  <div class="col-md-3 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Four Last Login User</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <ul class="list-unstyled top_profiles">
+          <?php
+          $i = 0;
+          foreach($user as $row) {
+            $color = "aero";
+            if( $i%3 == 0 ) {
+              $color = "green";
+            }
+            if( $i%3 == 1 ) {
+              $color = "blue";
+            }
+          ?>
+            <li class="media event">
+              <a class="pull-left border-aero profile_thumb">
+                <i class="fa fa-user <?php echo $color; ?>"></i>
+              </a>
+              <div class="media-body">
+                <a class="title" href="#"><?php echo ($i+1).". ".$row["USERNAME"]; ?></a>
+                <p>Last Login : <?php echo $row["LAST_LOGIN"]; ?></p>
+                <p><small>tipe user : <?php echo $row["USER_TYPE"]?></small></p>
+              </div>
+            </li>
+          <?php
+            $i++;
+          }
+          ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-9 col-md-9">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Report Finansial</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
 
       </div>
     </div>
   </div>
 </div>
-
-
 
 <div class="row">
   <div class="col-md-12">
@@ -145,7 +151,7 @@
             <p class="title green">Hostname</p>
             <p id="hostname"></p>
             <p class="title green">IP Address</p>
-            <p id="ip_address"></p>    
+            <p id="ip_address"></p>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <p class="title green">Location</p>
@@ -157,15 +163,15 @@
             <p class="title green">Tanggal EoL</p>
             <p id="end_of_life_date"></p>
             <p class="title green">Perihal</p>
-            <p id="perihal"></p>    
+            <p id="perihal"></p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div 
-  id= "modal_detail_upcoming_event" class="modal fade modal-confirmation" 
+<div
+  id= "modal_detail_upcoming_event" class="modal fade modal-confirmation"
   tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -189,7 +195,7 @@
             <p class="title green">Diingatkan Tanggal</p>
             <p id="reminder_date"></p>
             <p class="title green">Perihal</p>
-            <p id="description"></p>    
+            <p id="description"></p>
           </div>
         </div>
       </div>

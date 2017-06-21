@@ -1,17 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller 
+class Dashboard extends CI_Controller
 {
 	function __construct()
 	{
-		parent::__construct();	
+		parent::__construct();
 		//	check session user
 		if(! $this->session->has_userdata("user")){
 			redirect("user/login");
 		}
 		if(
-			$this->session->userdata("user")["user_type"] != "SYS" && 
+			$this->session->userdata("user")["user_type"] != "SYS" &&
 			$this->session->userdata("user")["user_type"] != "ORGANIC") {
 			redirect("maintenance");
 		}
@@ -25,9 +25,9 @@ class Dashboard extends CI_Controller
 	}
 
 	public function index()
-	{	
+	{
 		$this->load->model("dashboard_model");
-		
+
 		$period = date("Y-m");
 		$this->data["maintenance"] = $this->dashboard_model->maintenance_total_per_month($period);
 		$troubleshoot= $this->dashboard_model->troubleshoot_total_per_month($period);
@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller
 				$this->data["troubleshoot_on"] = $row["TOTAL"];
 			}
 			else {
-				$this->data["troubleshoot_off"] = $row["TOTAL"];	
+				$this->data["troubleshoot_off"] = $row["TOTAL"];
 			}
 		}
 
@@ -50,11 +50,11 @@ class Dashboard extends CI_Controller
 				$this->data["procurement_pending"] = $row["TOTAL"];
 			}
 			else {
-				$this->data["procurement_done"] = $row["TOTAL"];	
+				$this->data["procurement_done"] = $row["TOTAL"];
 			}
-		}		
+		}
 
-		$this->data["user"] = $this->dashboard_model->latest_five_login();
+		$this->data["user"] = $this->dashboard_model->latest_four_login();
 		$this->template_data["content"] = $this->load->view("dashboard", $this->data, TRUE);
 		$this->load->view("template", $this->template_data);
 	}
@@ -73,16 +73,16 @@ class Dashboard extends CI_Controller
 			}
 			else if(date("Y-m", strtotime($row["END_OF_SALE_DATE"])) == $period) {
 				$info = "End of Sale";
-				$data["start"] = $row["END_OF_SALE_DATE"];	
+				$data["start"] = $row["END_OF_SALE_DATE"];
 			}
 			else if(date("Y-m", strtotime($row["END_OF_LIFE_DATE"])) == $period) {
 				$info = "End of Life";
-				$data["start"] = $row["END_OF_LIFE_DATE"];		
+				$data["start"] = $row["END_OF_LIFE_DATE"];
 			}
 			else if(date("Y-m", strtotime($row["END_OF_SUPPORT_DATE"])) == $period) {
 				$info = "End of Support";
-				$data["start"] = $row["END_OF_SUPPORT_DATE"];		
-			} 
+				$data["start"] = $row["END_OF_SUPPORT_DATE"];
+			}
 			$data["title"] = $info." - ".$row["BRAND"]." / ".$row["TYPE"]." / ".$row["HOSTNAME"]." (".$row["IP_ADDRESS"].")";
 			$data["extra"] = $row;
 			$data["info"] = $info;
@@ -103,7 +103,7 @@ class Dashboard extends CI_Controller
 	public function generate_bar_chart(){
 		$this->load->model("dashboard_model");
 		$availability_asset = $this->dashboard_model->asset_availability_per_group();
-		
+
 		$data = array();
 		$labels = array();
 		$data_active = array();
@@ -112,7 +112,7 @@ class Dashboard extends CI_Controller
 			array_push($labels, $row["GROUP_NAME"]);
 			array_push($data_active, $row["ACTIVE"]);
 			array_push($data_non_active, $row["NON_ACTIVE"]);
-		}	
+		}
 		$data["labels"] = $labels;
 
 		$datasets = array();
