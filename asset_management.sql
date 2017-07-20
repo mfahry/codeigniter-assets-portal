@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2017 at 12:08 PM
+-- Generation Time: Jul 14, 2017 at 10:59 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -62,11 +62,11 @@ CREATE TABLE `asset` (
 
 INSERT INTO `asset` (`ID`, `BRAND`, `TYPE`, `GROUP_ID`, `BUY_DATE`, `EXPIRED_MAINTENANCE_DATE`, `PHOTO`, `LOCATION`, `BUY_PRICE`, `CABLE_X_COORDINATE`, `CABLE_Y_COORDINATE`, `CABLE_TYPE`, `SERIAL_NUMBER`, `HA_MODE`, `SPECIFICATION`, `ASSET_FUNCTION`, `ACTIVE`, `USER_ID`, `LAST_UPDATE`, `LAST_UPDATE_USER_ID`, `HOSTNAME`, `END_OF_SALE_DATE`, `END_OF_LIFE_DATE`, `IP_ADDRESS`, `OPERATING_SYSTEM`, `PORT`, `END_OF_SUPPORT_DATE`) VALUES
 (119, 'Palo Alto ', 'PA-5020', 1, '1945-01-01', '2018-04-30', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', '0011-C101-472_-____-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:19:17', 1, 'Ostrich', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
-(120, 'Palo Alto ', 'PA-5020', 1, '1945-01-01', '2018-04-30', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', '0011-C101-421_-____-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:18:16', 1, 'Cassowary', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
+(120, 'Palo Alto ', 'PA-5020', 1, '1945-01-01', '2018-04-30', 'uploads/asset/GGRZ2385.jpg', 'BRI 1 SUDIRMAN', 0, 'Q', '37', 'CAT 6', '0011-C101-421_-____-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 13:53:45', 1, 'Cassowary', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
 (121, 'Cisco', 'Ironport C370', 4, '1945-01-01', '2018-04-30', '', 'BRI 1 SUDIRMAN', 0, '0', '0', '', '7828BCB194436-5P4FSR1', '', '', '', 'Y', 1, '0000-00-00 00:00:00', 0, 'Magpie', '2014-01-28', '2019-07-31', '', '', '', '2014-01-28'),
 (122, 'Sourcefire', 'Defense Center 750', 8, '1945-01-01', '1945-01-01', '', 'BRI 1 SUDIRMAN', 0, '0', '0', '', 'AZGZ1210141-A', '', '', '', 'N', 1, '0000-00-00 00:00:00', 0, 'Cormorant', '1945-01-01', '1945-01-01', '', '', '', '1945-01-01'),
-(123, 'Juniper', 'Juniper NetScreen ISG-2000', 1, '1945-01-01', '2016-12-31', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', '0079-0120-0900-0380-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:23:21', 1, 'Bima 1', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
-(124, 'Juniper', 'Juniper NetScreen ISG-2000', 1, '1945-01-01', '2016-12-31', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', '0079-0120-0900-0347-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:24:08', 1, 'Bima 2', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
+(123, 'Juniper', 'Juniper NetScreen ISG-2000', 1, '1945-01-01', '2016-12-31', 'uploads/asset/QIWS0391_(1).jpg', 'BRI 1 SUDIRMAN', 0, 'Q', '37', 'CAT 6', '0079-0120-0900-0380-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 13:59:29', 1, 'Bima 1', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
+(124, 'Juniper', 'Juniper NetScreen ISG-2000', 1, '1945-01-01', '2016-12-31', 'uploads/asset/QIWS0391.jpg', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', '0079-0120-0900-0347-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 14:00:17', 1, 'Bima 2', '1945-01-01', '1945-01-01', '', '', 'MGT', '1945-01-01'),
 (125, 'Checkpoint', 'Check Point Power-1 5070', 1, '1945-01-01', '2016-12-31', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'MAC0-090f-b226-8ec_-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:21:06', 1, 'Deathstar 1', '2017-03-31', '2017-04-01', '', '', 'MGMT', '2017-04-01'),
 (126, 'Checkpoint', 'Check Point Power-1 5070', 1, '1945-01-01', '2016-12-31', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'MAC0-090f-b226-8f6_-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:22:16', 1, 'Deathstar 2', '2017-03-31', '2017-04-01', '', '', 'MGMT', '2017-04-01'),
 (127, 'Juniper', 'Juniper NSMXpress', 1, '1945-01-01', '1945-01-01', '', 'BRI 1 SUDIRMAN', 0, '0', '0', '', '0213052009000008', '', '', '', 'N', 1, '0000-00-00 00:00:00', 0, '', '2020-07-31', '1945-01-01', '', '', '', '2017-07-31'),
@@ -79,9 +79,9 @@ INSERT INTO `asset` (`ID`, `BRAND`, `TYPE`, `GROUP_ID`, `BUY_DATE`, `EXPIRED_MAI
 (134, 'Cisco', 'Sourcefire 3D7030', 6, '1945-01-01', '2016-12-31', 'uploads/asset/HIFH19201.jpg', 'BRI 1 SUDIRMAN', 0, 'E', '33', 'CAT 6', 'SFI1-3040-0129-T___-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 11:48:00', 1, 'Krakatau', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
 (135, 'Cisco', 'Sourcefire 3D7120', 6, '1945-01-01', '2016-12-31', 'uploads/asset/GDMK7165.jpg', 'BRI 1 SUDIRMAN', 0, '0', '0', '', '1301-1500-4003-05A_-____-___', '', '', '', 'Y', 1, '2017-06-21 11:46:57', 1, 'Rinjani', '1945-01-01', '1945-01-01', '', '', '', '1945-01-01'),
 (136, 'Cisco', 'Sourcefire 3D7120', 6, '1945-01-01', '2016-12-31', 'uploads/asset/LMFC0140.jpg', 'BRI 1 SUDIRMAN', 0, 'E', '33', 'CAT 6', '1301-1500-4003-14A_-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 11:58:48', 1, 'Kerinci', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
-(137, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-29', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'SWLR-QSDF-PKSB-W605-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:16:05', 1, 'Tiger-1', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
-(138, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-29', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'SWV8-8NNV-J2W5-8B26-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:16:56', 1, 'Tiger-2', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
-(139, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-30', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'SWRR-H9E2-Z6JB-9V39-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:14:24', 1, 'Ox-1', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
+(137, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-29', 'uploads/asset/RUFJ6814_(1).jpg', 'BRI 1 SUDIRMAN', 0, 'Q', '37', 'CAT 6', 'SWLR-QSDF-PKSB-W605-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 13:54:58', 1, 'Tiger-1', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
+(138, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-29', 'uploads/asset/RHNJ2863.jpg', 'BRI 1 SUDIRMAN', 0, 'Q', '37', 'CAT 6', 'SWV8-8NNV-J2W5-8B26-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 13:57:54', 1, 'Tiger-2', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
+(139, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-30', 'uploads/asset/RHNJ2863_(2).jpg', 'BRI 1 SUDIRMAN', 0, 'Q', '37', 'CAT 6', 'SWRR-H9E2-Z6JB-9V39-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 13:56:09', 1, 'Ox-1', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
 (140, 'McAfee', 'MFE Firewall Ent S4016 Appl', 1, '1945-01-01', '2012-12-30', '', 'BRI 1 SUDIRMAN', 0, '0', '37', 'CAT 6', 'SWGE-NNRF-L8KS-L769-____-___', 'AP', '', '', 'Y', 1, '2017-06-21 10:15:14', 1, 'Ox-2', '1945-01-01', '1945-01-01', '', '', 'MGMT', '1945-01-01'),
 (141, 'Radware', 'LinkProof OnDemand Switch with BWM, IPS v6.12.02', 7, '1945-01-01', '1945-01-01', '', 'BRI 1 SUDIRMAN', 0, '0', '50', '', '3190-4071-____-____-____-___', '', 'Mac address : 0003B29F5700\r\nU: 21', '', 'Y', 1, '2017-06-21 09:58:03', 1, 'Albatross', '1945-01-01', '1945-01-01', '', '', 'G6/MNG1', '1945-01-01'),
 (142, 'Radware', 'LinkProof OnDemand Switch with BWM, IPS v6.12.02', 7, '1945-01-01', '1945-01-01', '', 'BRI 1 SUDIRMAN', 0, '0', '50', '', '3110-6946-____-____-____-___', '', 'Mac Address : 0003B29EF940\r\nU: 22', '', 'Y', 1, '2017-06-21 10:00:30', 1, 'Albatross Peer', '1945-01-01', '1945-01-01', '', '', 'MNG1', '1945-01-01'),
@@ -429,7 +429,58 @@ CREATE TABLE `parameter` (
 --
 
 INSERT INTO `parameter` (`ID`, `NAME`, `DESCRIPTION`, `VALUE`) VALUES
-(1, 'Waktu Pengingat (Notifikasi Telegram) ', 'Notifikasi ke telegram ada dikirimkan saat 1 minggu sebelum waktu berakhir', '7');
+(1, 'Waktu Pengingat (Notifikasi Telegram) ', 'Notifikasi ke telegram ada dikirimkan saat 1 minggu sebelum waktu berakhir', '7'),
+(2, 'Periode Anggaran Baru', 'Periode anggaran baru dimulai dari bulan Maret ', '03-01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `ID` int(11) NOT NULL,
+  `PROJECT_NAME` varchar(255) NOT NULL,
+  `START_DATE` date NOT NULL,
+  `END_DATE` date NOT NULL,
+  `BUDGET` int(11) DEFAULT NULL,
+  `EXPENSE` int(11) DEFAULT NULL,
+  `STATUS` enum('ACTIVE','NON ACTIVE') DEFAULT NULL,
+  `DESCRIPTION` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`ID`, `PROJECT_NAME`, `START_DATE`, `END_DATE`, `BUDGET`, `EXPENSE`, `STATUS`, `DESCRIPTION`) VALUES
+(1, 'Test', '2015-07-06', '2016-10-06', 100000, 50000, 'ACTIVE', ''),
+(2, 'Test 2', '2017-02-06', '2018-08-01', 200000, 300000, 'ACTIVE', ''),
+(3, 'test Tst', '2016-01-06', '2016-09-06', 340000, 200000, 'ACTIVE', ''),
+(4, 'test tt', '2015-07-06', '2015-10-06', 30000, 15000, 'ACTIVE', ''),
+(5, 'terkahir', '2017-07-06', '2018-02-06', 500000, 450000, 'ACTIVE', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_asset`
+--
+
+CREATE TABLE `project_asset` (
+  `PROJECT_ID` int(11) NOT NULL,
+  `ASSET_ID` mediumint(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `project_asset`
+--
+
+INSERT INTO `project_asset` (`PROJECT_ID`, `ASSET_ID`) VALUES
+(1, 200),
+(2, 203),
+(2, 201),
+(3, 199),
+(3, 245);
 
 -- --------------------------------------------------------
 
@@ -451,8 +502,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `USERNAME`, `PASSWORD`, `LAST_LOGIN`, `ACTIVE`, `USER_TYPE`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2017-06-21 09:38:21', 'Y', 'SYS'),
-(2, 'mfahry', '1640ccf230ce510c66e787dff0a4eec1', '2017-05-18 08:47:30', 'Y', 'ORGANIC'),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2017-07-06 13:30:22', 'Y', 'SYS'),
+(2, 'mfahry', '1640ccf230ce510c66e787dff0a4eec1', '2017-07-06 08:32:59', 'Y', 'ORGANIC'),
 (3, 'nonot', '99f2e975bb5b9a82b1d2386ad2adb527', NULL, 'Y', 'ORGANIC'),
 (4, 'khilmi', 'd613e3e68f4f9c16e788fa8299ab0edb', NULL, 'Y', 'ORGANIC'),
 (5, 'caturadi', '2d08fda6aa81c7435e80e208527dc286', NULL, 'Y', 'ORGANIC'),
@@ -541,6 +592,12 @@ ALTER TABLE `parameter`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -599,7 +656,12 @@ ALTER TABLE `document`
 -- AUTO_INCREMENT for table `parameter`
 --
 ALTER TABLE `parameter`
-  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `project`
+--
+ALTER TABLE `project`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --

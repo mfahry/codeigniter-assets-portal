@@ -100,6 +100,13 @@
                       </ul>
                     </li>
                     <li>
+                    	<a><i class="fa fa-bank"></i> Project <span class="fa fa-chevron-down"></span></a>
+                    	<ul class="nav child_menu">
+                        <li><a href="<?php echo base_url("project")?>">View Data</a></li>
+                        <li><a href="<?php echo base_url("project/add")?>">Add New</a></li>
+                      </ul>
+                    </li>
+                    <li>
                     	<a><i class="fa fa-binoculars"></i> Troubleshoot <span class="fa fa-chevron-down"></span></a>
                     	<ul class="nav child_menu">
                         <li><a href="<?php echo base_url("troubleshoot")?>">View Data</a></li>

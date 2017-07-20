@@ -52,7 +52,7 @@ class Dashboard_model extends CI_Model {
 		$sql = "
 			SELECT
 				A.ID, B.NAME GROUP_NAME, BRAND, TYPE, IP_ADDRESS, LOCATION,
-				HOSTNAME, EXPIRED_MAINTENANCE_DATE, END_OF_SALE_DATE, END_OF_LIFE_DATE
+				HOSTNAME, EXPIRED_MAINTENANCE_DATE, END_OF_SALE_DATE, END_OF_LIFE_DATE, END_OF_SUPPORT_DATE
 			FROM ASSET A
 			JOIN ASSET_GROUP B ON(A.GROUP_ID = B.ID)
 			WHERE DATE_FORMAT(EXPIRED_MAINTENANCE_DATE, '%Y-%m') = ? OR DATE_FORMAT(END_OF_SALE_DATE, '%Y-%m') = ? OR DATE_FORMAT(END_OF_LIFE_DATE, '%Y-%m') = ? OR DATE_FORMAT(END_OF_SUPPORT_DATE, '%Y-%m') = ?";
@@ -71,6 +71,20 @@ class Dashboard_model extends CI_Model {
 			JOIN USER D ON(A.USER_ID = D.ID)
 			WHERE DATE_FORMAT(REMINDER_DATE, '%Y-%m') = ? AND STATUS IN('WAITING REMINDER', 'PENDING')";
 		$result = $this->db->query($sql, array($date));
+		return $result->result_array();
+	}
+
+	public function select_report_project_three_year($year){
+		$sql = "
+			SELECT BUDGET, EXPENSE, START_DATE, END_DATE
+			FROM PROJECT
+			WHERE
+				(END_DATE BETWEEN STR_TO_DATE((SELECT CONCAT('".$year."-', VALUE) FROM PARAMETER WHERE ID = 2), '%Y-%m-%d') - INTERVAL 3 YEAR
+				AND STR_TO_DATE((SELECT CONCAT('".$year."-', VALUE) FROM PARAMETER WHERE ID = 2), '%Y-%m-%d')) OR
+				(START_DATE BETWEEN STR_TO_DATE((SELECT CONCAT('".$year."-', VALUE) FROM PARAMETER WHERE ID = 2), '%Y-%m-%d') - INTERVAL 3 YEAR
+				AND STR_TO_DATE((SELECT CONCAT('".$year."-', VALUE) FROM PARAMETER WHERE ID = 2), '%Y-%m-%d'))
+		";
+		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
 }

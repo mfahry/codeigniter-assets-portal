@@ -130,4 +130,111 @@ class Dashboard extends CI_Controller
 		$data["datasets"] = $datasets;
 		echo json_encode($data);
 	}
+
+	public function generate_report_finansial(){
+		$data = array();
+		$data["labels"] = array();
+		$data["datasets"] = array();
+
+		//generate budget, expense, label per year
+		$year = date("Y");
+		$budget = array();
+		$expense = array();
+		for($i = 2; $i >= 0; $i--){
+			array_push($data["labels"], $year - $i);
+			$budget[$year - $i] = 0;
+			$expense[$year - $i] = 0;
+		}
+
+		//select new budget period
+		$this->load->model("parameter_model");
+		$parameter = $this->parameter_model->select_by_id(2);
+		$new_budget_period = $parameter["VALUE"];
+
+		//select data
+		$this->load->model("dashboard_model");
+		$result = $this->dashboard_model->select_report_project_three_year($year + 1);
+		foreach($result as $row){
+			$start_date = $row["START_DATE"];
+			$period_start_date = substr($start_date, 0, 4)."-".$new_budget_period;
+
+			$get_budget_before = 0;
+			$period_min = substr($start_date, 0, 4);
+			$dt_start_date = new DateTime($start_date);
+			$dt_period_start_date = new DateTime($period_start_date);
+
+			if($dt_start_date < $dt_period_start_date) {
+				$get_budget_before = 1;
+				$period_min = $period_min - 1;
+			}
+
+			$end_date = $row["END_DATE"];
+			$period_end_date = substr($end_date, 0, 4)."-".$new_budget_period;
+
+			$get_budget_after = 0;
+			$period_max = substr($end_date, 0, 4);
+			$dt_end_date = new DateTime($end_date);
+			$dt_period_end_date = new DateTime($period_end_date);
+			if($dt_end_date < $dt_period_end_date) {
+				$period_max = $period_max - 1;
+			}
+
+			//generate divider for budget and expense
+			$devider = 1;
+			if($period_max != $period_min) {
+				$devider += $period_max - $period_min;
+			}
+			//echo $period_max." - ".$period_min;
+			$budget_temp = $row["BUDGET"] / $devider;
+			$expense_temp = $row["EXPENSE"] / $devider;
+			for($i = $period_min; $i <= $period_max; $i++){
+				if(array_key_exists($i, $budget)) {
+					$budget[$i] += $budget_temp;
+					$expense[$i] += $expense_temp;
+				}
+			}
+
+			//echo $row["START_DATE"]." - ".$row["END_DATE"]." - ".$row["BUDGET"]." - ".$row["EXPENSE"]." - ".$devider." - ".$get_budget_before."<br/>";
+		}
+
+		$budget_data = array();
+		foreach($budget as $row){
+			array_push($budget_data, floor($row));
+		}
+
+		$expense_data = array();
+		foreach($expense as $row){
+			array_push($expense_data, floor($row));
+		}
+		$dataset["label"] = "Anggaran";
+		$dataset["fill"] = FALSE;
+		$dataset["lineTension"] = 0.1;
+		$dataset["backgroundColor"] = "rgba(38, 185, 154, 0.31)";
+		$dataset["borderColor"] = "rgba(38, 185, 154, 0.7)";
+		$dataset["pointBorderColor"] = "rgba(38, 185, 154, 0.7)";
+		$dataset["pointBackgroundColor"] = "rgba(38, 185, 154, 0.7)";
+		$dataset["pointHoverBackgroundColor"] = "#fff";
+		$dataset["pointHoverBorderColor"] = "rgba(220,220,220,1)";
+		$dataset["pointBorderWidth"] = 1;
+
+		$dataset["data"] = $budget_data;
+
+		array_push($data["datasets"], $dataset);
+
+		$dataset["label"] = "Pengeluaran";
+		$dataset["fill"] = FALSE;
+		$dataset["lineTension"] = 0.1;
+		$dataset["backgroundColor"] = "rgba(3, 88, 106, 0.3)";
+		$dataset["borderColor"] = "red";
+		$dataset["pointBorderColor"] = "rgba(3, 88, 106, 0.70)";
+		$dataset["pointBackgroundColor"] = "rgba(3, 88, 106, 0.70)";
+		$dataset["pointHoverBackgroundColor"] = "#fff";
+		$dataset["pointHoverBorderColor"] = "rgba(151,187,205,1)";
+		$dataset["pointBorderWidth"] = 1;
+		$dataset["data"] = $expense_data;
+
+		array_push($data["datasets"], $dataset);
+
+		echo json_encode($data);
+	}
 }

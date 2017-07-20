@@ -1839,6 +1839,24 @@ if (typeof NProgress != 'undefined') {
 			}, function(start, end, label) {
 			  console.log(start.toISOString(), end.toISOString(), label);
 			});
+      $('#start_date').daterangepicker({
+			  singleDatePicker: true,
+			  singleClasses: "picker_2",
+			  locale: {
+			  	format: "YYYY-MM-DD"
+			  }
+			}, function(start, end, label) {
+			  console.log(start.toISOString(), end.toISOString(), label);
+			});
+      $('#end_date').daterangepicker({
+			  singleDatePicker: true,
+			  singleClasses: "picker_2",
+			  locale: {
+			  	format: "YYYY-MM-DD"
+			  }
+			}, function(start, end, label) {
+			  console.log(start.toISOString(), end.toISOString(), label);
+			});
 			$('#filter_date').daterangepicker({
 			  singleDatePicker: true,
 			  singleClasses: "picker_2",
@@ -5219,7 +5237,10 @@ if (typeof NProgress != 'undefined') {
 			 });
 			}
 
+
+
 			if($("#critical_event_calendar").length){
+        //alert("Tes");
 				var date = new Date(),
 					d = date.getDate(),
 					m = date.getMonth(),
@@ -5347,6 +5368,31 @@ if (typeof NProgress != 'undefined') {
 				  });
 				});
 			}
+      
+      if ($('#report_finansial').length ){
+			  $.getJSON( base_url+"dashboard/generate_report_finansial", function( json ) {
+          var lineChart = new Chart($("#report_finansial"), {
+						type: 'line',
+						data: json,
+						options : {
+							scales: {
+								yAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: "Jumlah"
+									}
+								}],
+								xAxes: [{
+									scaleLabel: {
+										display: true,
+										labelString: "Tahun"
+									}
+								}],
+							}
+						}
+				  });
+			 });
+			}
 			//	end troubleshoot chart
 
 			//	maintenance chart
@@ -5431,6 +5477,21 @@ if (typeof NProgress != 'undefined') {
       $("#table_asset tbody").html(asset_content);
       $("#table_asset tbody tr").children().last().remove();
       $(".modal-asset").modal("hide");
+    }
+
+    function table_select_multiple_asset(event){
+      const asset_id = $(event.target).attr("data-id");
+      if($(event.target).is(":checked")) {
+        var asset_content = $(event.target).closest("tr").clone();
+        asset_content.attr("id","row-asset-id-"+asset_id);
+        $("#table_asset tbody").append(asset_content);
+        $("#asset_list").append("<input type=\"hidden\" name=\"asset_id[]\" id=\"asset-id-"+asset_id+"\" value=\""+asset_id+"\"/>");
+        $("#table_asset tbody").children().children().last().remove();
+      }
+      else {
+        $("#row-asset-id-"+asset_id).remove();
+        $("#asset-id-"+asset_id).remove();
+      }
     }
 
 	  function handle_reportrange(start_date, end_date) {

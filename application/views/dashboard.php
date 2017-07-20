@@ -112,7 +112,7 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-
+        <canvas id="report_finansial"></canvas>
       </div>
     </div>
   </div>
