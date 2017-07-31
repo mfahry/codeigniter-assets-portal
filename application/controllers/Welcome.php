@@ -49,7 +49,7 @@ class Welcome extends CI_Controller {
 
 		$auth = json_decode($curlResult, true);
 		$text = "Test Alert From ASSET MANAGEMENT BOT";
-		/*foreach($result as $row) {
+		foreach($result as $row) {
 			if($row["INFO"] == "EXPIRED") {
 				if($row["EXPIRED_MAINTENANCE_DATE"] == $row["ALERT_DATE"]) {
 					$info = "Maintenance Habis";
@@ -68,7 +68,7 @@ class Welcome extends CI_Controller {
 			else {
 				$text = "<b>Schedule Terjadwal untuk ".$row["USERNAME"]."</b>".chr(10)."Perihal : ".$row["DESCRIPTION"];
 			}
-*/
+
 			if(array_key_exists("success", $auth["result"])) {
 				$token = $auth["result"]["token"];
 
@@ -97,8 +97,8 @@ class Welcome extends CI_Controller {
 			}
 			else {
 				echo $auth["result"]["error"];
-				//break;
+				break;
 			}
 		}
-	//}
+	}
 }
