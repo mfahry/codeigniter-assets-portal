@@ -6,9 +6,9 @@ class Asset_model extends CI_Model {
 		$sql = "
 			SELECT
 				A.ID, BRAND, TYPE, B.NAME AS 'GROUP', LOCATION,
-				HOSTNAME, IP_ADDRESS, ACTIVE, OPERATING_SYSTEM, SERIAL_NUMBER 
-			FROM ASSET A
-			JOIN ASSET_GROUP B ON(A.GROUP_ID = B.ID)";
+				HOSTNAME, IP_ADDRESS, ACTIVE, OPERATING_SYSTEM, SERIAL_NUMBER
+			FROM asset A
+			JOIN asset_group B ON(A.GROUP_ID = B.ID)";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
@@ -20,10 +20,10 @@ class Asset_model extends CI_Model {
 		$end_of_support_date ) {
 
 		$sql = "
-			INSERT INTO ASSET (
+			INSERT INTO asset (
 				HOSTNAME, BRAND, TYPE, IP_ADDRESS, LOCATION, OPERATING_SYSTEM, SERIAL_NUMBER, GROUP_ID, ACTIVE, PHOTO,
 				BUY_PRICE, BUY_DATE, EXPIRED_MAINTENANCE_DATE, END_OF_SALE_DATE, END_OF_LIFE_DATE, CABLE_TYPE,
-				CABLE_X_COORDINATE, CABLE_Y_COORDINATE, HA_MODE, ASSET_FUNCTION, SPECIFICATION, USER_ID, PORT,
+				CABLE_X_COORDINATE, CABLE_Y_COORDINATE, HA_MODE, asset_FUNCTION, SPECIFICATION, USER_ID, PORT,
 				END_OF_SUPPORT_DATE
 			) VALUES (
 				?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
@@ -47,11 +47,11 @@ class Asset_model extends CI_Model {
 		$end_of_support_date, $id) {
 
 		$sql = "
-			UPDATE ASSET SET
+			UPDATE asset SET
 				HOSTNAME = ?, BRAND = ?, TYPE = ?, IP_ADDRESS = ?, LOCATION = ?, OPERATING_SYSTEM = ?, SERIAL_NUMBER = ?,
 				GROUP_ID = ?, ACTIVE = ?, PHOTO = ?, BUY_PRICE = ?, BUY_DATE = ?, EXPIRED_MAINTENANCE_DATE = ?,
 				END_OF_SALE_DATE = ?, END_OF_LIFE_DATE = ?, CABLE_TYPE = ?, CABLE_X_COORDINATE = ?, CABLE_Y_COORDINATE = ?,
-				HA_MODE = ?, ASSET_FUNCTION = ?, SPECIFICATION = ?, LAST_UPDATE = NOW(), LAST_UPDATE_USER_ID = ?, PORT = ?,
+				HA_MODE = ?, asset_FUNCTION = ?, SPECIFICATION = ?, LAST_UPDATE = NOW(), LAST_UPDATE_USER_ID = ?, PORT = ?,
 				END_OF_SUPPORT_DATE = ?
 			WHERE ID = ? ";
 
@@ -65,27 +65,27 @@ class Asset_model extends CI_Model {
 	}
 
 	public function delete($id){
-		$sql = "DELETE FROM ASSET WHERE ID = ?";
+		$sql = "DELETE FROM asset WHERE ID = ?";
 		$this->db->query($sql, array($id));
 	}
 
 	public function insert_port($asset_id, $port, $ip_address){
-		$sql = "INSERT INTO ASSET_PORT(ASSET_ID, PORT, IP_ADDRESS) VALUES (?, ?, ?)";
+		$sql = "INSERT INTO asset_port(asset_ID, PORT, IP_ADDRESS) VALUES (?, ?, ?)";
 		$this->db->query($sql, array($asset_id, $port, $ip_address));
 	}
 
 	public function delete_port_by_asset_id($asset_id){
-		$sql = "DELETE FROM ASSET_PORT WHERE ASSET_ID = ?";
+		$sql = "DELETE FROM asset_port WHERE asset_ID = ?";
 		$this->db->query($sql, array($asset_id));
 	}
 
 	public function insert_document($asset_id, $tmp_name, $tmp_description, $path){
-		$sql = "INSERT INTO ASSET_DOCUMENT(ASSET_ID, NAME, DESCRIPTION, PATH) VALUES (?, ?, ?, ?)";
+		$sql = "INSERT INTO asset_document(asset_ID, NAME, DESCRIPTION, PATH) VALUES (?, ?, ?, ?)";
 		$this->db->query($sql, array($asset_id, $tmp_name, $tmp_description, $path));
 	}
 
 	public function delete_document_by_asset_id($asset_id){
-		$sql = "DELETE FROM ASSET_DOCUMENT WHERE ASSET_ID = ?";
+		$sql = "DELETE FROM asset_document WHERE asset_ID = ?";
 		$this->db->query($sql, array($asset_id));
 	}
 
@@ -94,23 +94,23 @@ class Asset_model extends CI_Model {
 			SELECT
 				A.ID, BRAND, TYPE, B.ID GROUP_ID, B.NAME GROUP_NAME, BUY_DATE, EXPIRED_MAINTENANCE_DATE, PHOTO, LOCATION,
 				BUY_PRICE, CABLE_X_COORDINATE, CABLE_Y_COORDINATE, CABLE_TYPE, SERIAL_NUMBER, HA_MODE, SPECIFICATION,
-				ASSET_FUNCTION, ACTIVE, HOSTNAME, END_OF_LIFE_DATE, END_OF_SALE_DATE, IP_ADDRESS, OPERATING_SYSTEM, PORT,
+				asset_FUNCTION, ACTIVE, HOSTNAME, END_OF_LIFE_DATE, END_OF_SALE_DATE, IP_ADDRESS, OPERATING_SYSTEM, PORT,
 				END_OF_SUPPORT_DATE
-			FROM ASSET A
-			JOIN ASSET_GROUP B ON(A.GROUP_ID = B.ID)
+			FROM asset A
+			JOIN asset_group B ON(A.GROUP_ID = B.ID)
 			WHERE A.ID = ? ";
 		$result = $this->db->query($sql, array($id));
 		return $result->row_array();
 	}
 
 	public function select_port_by_asset_id($asset_id){
-		$sql = "SELECT ID, PORT, IP_ADDRESS, ASSET_ID FROM ASSET_PORT WHERE ASSET_ID = ?";
+		$sql = "SELECT ID, PORT, IP_ADDRESS, asset_ID FROM asset_port WHERE asset_ID = ?";
 		$result = $this->db->query($sql, array($asset_id));
 		return $result->result_array();
 	}
 
 	public function select_document_by_asset_id($asset_id){
-		$sql = "SELECT ID, ASSET_ID, NAME, PATH, DESCRIPTION FROM ASSET_DOCUMENT WHERE ASSET_ID = ?";
+		$sql = "SELECT ID, asset_ID, NAME, PATH, DESCRIPTION FROM asset_document WHERE asset_ID = ?";
 		$result = $this->db->query($sql, array($asset_id));
 		return $result->result_array();
 	}

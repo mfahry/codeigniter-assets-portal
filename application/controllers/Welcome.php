@@ -31,7 +31,25 @@ class Welcome extends CI_Controller {
 	public function alert_telegram(){
 		$this->load->model("welcome_model");
 		$result = $this->welcome_model->select_reminder_asset();
-		foreach($result as $row) {
+
+		// get authentication telegram bot app
+		$data = array(
+			"username" => "oms",
+			"password" => "A553t_M4n463m3nt!@#"
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, "172.18.104.79/customercare/auth/getToken");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+
+		$curlResult = curl_exec($ch);
+		curl_close($ch);
+
+		$auth = json_decode($curlResult, true);
+		$text = "Test Alert From ASSET MANAGEMENT BOT";
+		/*foreach($result as $row) {
 			if($row["INFO"] == "EXPIRED") {
 				if($row["EXPIRED_MAINTENANCE_DATE"] == $row["ALERT_DATE"]) {
 					$info = "Maintenance Habis";
@@ -50,21 +68,37 @@ class Welcome extends CI_Controller {
 			else {
 				$text = "<b>Schedule Terjadwal untuk ".$row["USERNAME"]."</b>".chr(10)."Perihal : ".$row["DESCRIPTION"];
 			}
+*/
+			if(array_key_exists("success", $auth["result"])) {
+				$token = $auth["result"]["token"];
 
-			// send to server telegram
-			$data = array(
-				"text" => $text,
-				"chat_id" => "@scheduleAlertOMS",
-				"parse_mode" => "HTML"
+				$data = array(
+					"botID" => "419658025:AAHVTD5DTtGvDXVbhnGH0wDkZfWloeoR5r0",
+					"token" => $token,
+					"text" => $text,
+					"chatID" => "@scheduleAlertOMS"
 				);
-			$ch = curl_unit();
-			curl_setopt($ch, CURLOPT_URL, "172.18.104.79/customercare/welcome/public_send_telegram");
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-			$server_output = curl_exec($ch);
-			curl_close($ch);
+				// send message
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, "172.18.104.79/customercare/auth/sendMessageThirdApp");
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+				curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+
+				$curlResult = curl_exec($ch);
+				curl_close($ch);
+
+				$auth = json_decode($curlResult, true);
+				if( ! array_key_exists("success", $auth["result"])) {
+					echo $auth["result"]["error"];
+				}
+			}
+			else {
+				echo $auth["result"]["error"];
+				//break;
+			}
 		}
-	}
+	//}
 }

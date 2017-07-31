@@ -4,42 +4,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Maintenance_model extends CI_Model {
 	public function select_all() {
 		$sql = "
-			SELECT A.ID, ASSET_ID, HOSTNAME, IP_ADDRESS, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH
-			FROM ASSET_MAINTENANCE A
-			JOIN ASSET B ON(A.ASSET_ID = B.ID)";
+			SELECT A.ID, asset_ID, HOSTNAME, IP_ADDRESS, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH
+			FROM asset_maintenance A
+			JOIN asset B ON(A.asset_ID = B.ID)";
 		$result = $this->db->query($sql);
 		return $result->result_array();
 	}
 
 	public function insert($asset_id, $event_date, $description, $document_path, $user_id){
 		$sql = "
-			INSERT INTO ASSET_MAINTENANCE(ASSET_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH, USER_ID) VALUES (?, ?, ?, ?, ?)";
+			INSERT INTO asset_maintenance(asset_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH, USER_ID) VALUES (?, ?, ?, ?, ?)";
 		$this->db->query($sql, array($asset_id, $event_date, $description, $document_path, $user_id));
 	}
 
 	public function update($asset_id, $event_date, $description, $document_path, $id){
 		$sql = "
-			UPDATE ASSET_MAINTENANCE SET 
-				ASSET_ID = ?,  EVENT_DATE = ?,  DESCRIPTION = ?, DOCUMENT_PATH = ?
+			UPDATE asset_maintenance SET
+				asset_ID = ?,  EVENT_DATE = ?,  DESCRIPTION = ?, DOCUMENT_PATH = ?
 			WHERE ID = ?";
 		$this->db->query($sql, array(
-			$asset_id, $event_date, $description, $document_path, 
+			$asset_id, $event_date, $description, $document_path,
 			$id));
 	}
 
 	public function delete($id){
-		$sql = "DELETE FROM ASSET_MAINTENANCE WHERE ID = ?";
+		$sql = "DELETE FROM asset_maintenance WHERE ID = ?";
 		$this->db->query($sql, array($id));
 	}
 
 	public function select_by_asset_id($asset_id){
-		$sql = "SELECT ID, ASSET_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH FROM ASSET_MAINTENANCE WHERE ASSET_ID = ?";
+		$sql = "SELECT ID, asset_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH FROM asset_maintenance WHERE asset_ID = ?";
 		$result = $this->db->query($sql, array($asset_id));
 		return $result->result_array();
 	}
 
 	public function select_by_id($id){
-		$sql = "SELECT ID, ASSET_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH FROM ASSET_MAINTENANCE WHERE ID = ?";
+		$sql = "SELECT ID, asset_ID, EVENT_DATE, DESCRIPTION, DOCUMENT_PATH FROM asset_maintenance WHERE ID = ?";
 		$result = $this->db->query($sql, array($id));
 		return $result->row_array();
 	}
